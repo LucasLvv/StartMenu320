@@ -33,13 +33,13 @@ class StaticData:
 public:
 	static StaticData* sharedStaticData();
 	static void purge();
-	int intValueFromKey(const std::string& key);
-	const char* stringValueFromKey(const std::string& key);
-	float floatValueFromKey(const std::string& key);
-	bool booleanFromKey(const std::string& key);
-	CCPoint pointFromKey(const std::string& key);
-	CCRect rectFromKey(const std::string& key);
-	CCSize sizeFromKey(const std::string& key);
+	int intValueFromKey(const string& key);
+	const char* stringValueFromKey(const string& key);
+	float floatValueFromKey(const string& key);
+	bool booleanFromKey(const string& key);
+	CCPoint pointFromKey(const string& key);
+	CCRect rectFromKey(const string& key);
+	CCSize sizeFromKey(const string& key);
 protected:
 	CCDictionary* _dictionary;
 	string _staticFileName;
