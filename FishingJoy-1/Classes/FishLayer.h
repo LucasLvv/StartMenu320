@@ -6,14 +6,17 @@ USING_NS_CC;
 #define FISH_MAX_COUNT 50
 
 class FishLayer :
-	public CCLayer
+public CCLayer
 {
 public:
 	FishLayer(void);
 	CREATE_FUNC(FishLayer)
 	virtual bool init();
 	virtual ~FishLayer(void);
-
+	CCArray *getFishArray()
+	{
+		return _fishes;
+	}
 protected:
 	CCArray* _fishes;
 	void addFish(float delta);

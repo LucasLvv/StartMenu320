@@ -31,13 +31,17 @@ class Fish :
 {
 public:
 	Fish(void);
+	virtual ~Fish(void);
 	static Fish* create(FishType type = k_Fish_Type_SmallFish);
 	virtual bool init(FishType type = k_Fish_Type_SmallFish);
 	int getScore();
 	int getSpeed();
 	CC_SYNTHESIZE(FishType, _type, Type);
-	virtual ~Fish(void);
+	CCRect getCollisionArea();
+	void beCaught();
 protected:
 	CCSprite* _fishSprite;
+	//FishType _type;
+	void Fish::beCaught_CallFunc();
 };
 

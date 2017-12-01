@@ -13,7 +13,8 @@ public:
 	CREATE_FUNC(Bullet);
 	bool init();
 	void end();
-	void flyTo(CCPoint targetInWorldSpace, int type/* =0 */);
+	void flyTo(CCPoint targetInWorldSpace, int type = 0);
+	CCPoint getCollosionPoint();
 protected:
 	float getSpeed(int type);
 	CCSprite* _bulletSprite;

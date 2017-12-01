@@ -40,9 +40,9 @@
 	<string>FishActor-Small-ipadhd.plist</string>
 	<key>fish_plist_02</key>
 	<string>FishActor-Mid-ipadhd.plist</string>
-	<key>fish_frame_count</key><!--���������֡��-->
+	<key>fish_frame_count</key>
 	<string>10</string>
-	<key>fish_animation_format</key><!--����������-->
+	<key>fish_animation_format</key>
 	<string>fish_animation_%02d</string>
 	<key>fish_plist_format</key>
 	<string>fish_plist_%02d</string>
@@ -135,6 +135,8 @@
 <string>ui_button_65-ipadhd.png</string>
 <key>button_sub</key>
 <string>ui_button_63-ipadhd.png</string>
+
+
 
 </dict>
 </plist>

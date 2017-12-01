@@ -30,9 +30,13 @@ bool Weapon::init(CannonType type)
 		CC_BREAK_IF(!_bullets);
 		CC_SAFE_RETAIN(_bullets);
 		
-		_fishNets=CCArray::createWithCapacity(BULLET_COUNT);
+		_fishNets = CCArray::createWithCapacity(BULLET_COUNT);
 		CC_BREAK_IF(!_fishNets);
 		CC_SAFE_RETAIN(_fishNets);
+
+		_particils = CCArray::createWithCapacity(BULLET_COUNT);
+		CC_BREAK_IF(!_particils);
+		CC_SAFE_RETAIN(_particils);
 		
 		for(int i = 0; i < BULLET_COUNT; i++)
 		{
@@ -46,6 +50,13 @@ bool Weapon::init(CannonType type)
 			addChild(fishNet);
 			fishNet->setVisible(false);
 			bullet->setUserObject(fishNet);
+
+			CCParticleSystemQuad *particle = CCParticleSystemQuad::create("yuwanglizi.plist");
+			particle->stopSystem();
+			this->addChild(particle);
+			_particils->addObject(particle);
+
+			fishNet->setUserObject(particle);
 		}
 		return true;
 	}while(0);
@@ -74,6 +85,7 @@ Weapon::~Weapon(void)
 {
 	CC_SAFE_RELEASE(_bullets);
 	CC_SAFE_RELEASE(_fishNets);
+	CC_SAFE_RELEASE(_particils);
 }
 
 void Weapon::aimAt(CCPoint target)
@@ -84,7 +96,9 @@ void Weapon::aimAt(CCPoint target)
 void Weapon::shootTo(CCPoint target)
 {
 	Bullet* bullet= getBulletToShoot();
-	if(!bullet) return;
+	if(bullet == NULL){
+		return;
+	}
 	CCPoint pointWorldSpace = getParent()->convertToWorldSpace(getPosition());
 	float distance = ccpDistance(target, pointWorldSpace);
 	if(distance > _cannon->getFireRange())
@@ -108,4 +122,14 @@ Bullet* Weapon::getBulletToShoot()
 		}
 	}
 	return NULL;
+}
+
+CCRect Weapon::getCollisionArea(Bullet *bullet)
+{
+	FishNet *_fishNets = (FishNet *)bullet->getUserObject();
+	if(_fishNets->isVisible())
+	{
+		return _fishNets->getCollisionArea();
+	}
+	return CCRectZero;
 }
