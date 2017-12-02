@@ -42,12 +42,12 @@ bool Weapon::init(CannonType type)
 		{
 			Bullet* bullet = Bullet::create();
 			_bullets->addObject(bullet);
-			addChild(bullet);
+			this->addChild(bullet);
 			bullet->setVisible(false);
 			
 			FishNet* fishNet = FishNet::create();
 			_fishNets->addObject(fishNet);
-			addChild(fishNet);
+			this->addChild(fishNet);
 			fishNet->setVisible(false);
 			bullet->setUserObject(fishNet);
 

@@ -134,12 +134,12 @@ void GameScene::update(float delta)
 
 void GameScene::fishWillBeCaught(Fish* fish)
 {
-	float weaponPercents[7] = {0.3,0.6,0.7,0.8,0.9,1.0,1.1};
-	float fishPercents[7] = {1,0.9,0.8,0.7,0.6,0.5,0.4};
+	double weaponPercents[k_Cannon_Count] = {0.3,0.6,0.7,0.8,0.9,1.0,1.1};
+	double fishPercents[k_Fish_Type_Count] = {1,0.9,0.8,0.7,0.6,0.5,0.4};
 	int cannonType = _cannonLayer->getWeapon()->getCannonType();
 	int fishType = fish->getType();
-	/*if(CCRANDOM_0_1() < weaponPercents[cannonType] * fishPercents[fishType])*/
-	if(CCRANDOM_0_1() <1.1)
+	if(CCRANDOM_0_1() < weaponPercents[cannonType] * fishPercents[fishType])
+	/*if(CCRANDOM_0_1() <1.1)*/
 	{
 		fish->beCaught();
 	}

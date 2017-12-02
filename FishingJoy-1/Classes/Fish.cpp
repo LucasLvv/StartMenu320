@@ -67,7 +67,7 @@ CCRect Fish::getCollisionArea()
 }
 
 void Fish::beCaught(){
-	CCCallFunc *callFunc = CCCallFunc::create(this,callfunc_selector(/*Fish::*/beCaught_CallFunc));
+	CCCallFunc *callFunc = CCCallFunc::create(this,callfunc_selector(Fish::beCaught_CallFunc));
 	CCSequence *sequence = CCSequence::create(CCDelayTime::create(1.0f),callFunc,NULL);
 	CCBlink *blink = CCBlink::create(1.0f, 8);
 	CCSpawn *spawn = CCSpawn::create(sequence, blink, NULL);
