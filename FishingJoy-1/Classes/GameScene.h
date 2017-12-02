@@ -30,10 +30,11 @@ protected:
 	CannonLayer* _cannonLayer;
 	TouchLayer* _touchLayer;
 	void preloadResources(void);
-	bool checkOutCollisionBetweenFishesAndBullet(Bullet *bullet);
-	void checkOutCollision();
 	virtual void update(float delta);
 	void fishWillBeCaught(Fish* fish);
+	//Åö×²¼ì²â
+	void checkOutCollision();
+	bool checkOutCollisionBetweenFishesAndBullet(Bullet *bullet);
 	void checkOutCollisionBetweenFishesAndFishingNet(Bullet *bulet);
 };
 

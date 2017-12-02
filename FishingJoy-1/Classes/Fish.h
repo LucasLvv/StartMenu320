@@ -11,7 +11,7 @@ typedef enum{
 	k_Fish_Type_PufferS,	//刺豚
 	k_Fish_Type_Bream,		//蓝色
 	k_Fish_Type_Progy,		//红色
-	k_Fish_Type_Count,
+	k_Fish_Type_Count,      
 	k_Fish_Type_Chelonian,	//乌龟
 	k_Fish_Type_Lantern,	//灯笼鱼
 	k_Fish_Type_Ray,		//魔鬼鱼

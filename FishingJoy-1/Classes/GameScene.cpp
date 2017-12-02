@@ -134,7 +134,9 @@ void GameScene::update(float delta)
 
 void GameScene::fishWillBeCaught(Fish* fish)
 {
+	//炮的百分比
 	double weaponPercents[k_Cannon_Count] = {0.3,0.6,0.7,0.8,0.9,1.0,1.1};
+	//鱼被捉到的百分比
 	double fishPercents[k_Fish_Type_Count] = {1,0.9,0.8,0.7,0.6,0.5,0.4};
 	int cannonType = _cannonLayer->getWeapon()->getCannonType();
 	int fishType = fish->getType();

@@ -81,7 +81,8 @@ void GameMenuLayer::createMenu(void)
 	CCMenu* menu = CCMenu::create(startMenuItem, sceneMenuItem, NULL);
 	this->addChild(menu);
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	menu->setPosition(ccp(winSize.width / 2, winSize.height * 0.4));
+	//开始游戏和选择场景位置
+	menu->setPosition(ccp(winSize.width / 2, winSize.height * 0.3));  
 	menu->alignItemsVerticallyWithPadding(50);
 }
 

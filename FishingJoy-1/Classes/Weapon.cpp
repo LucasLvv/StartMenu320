@@ -1,5 +1,6 @@
 #include "Weapon.h"
 
+//连发炮弹数上限
 #define BULLET_COUNT 10
 
 Weapon* Weapon::create(CannonType type)
