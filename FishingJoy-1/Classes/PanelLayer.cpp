@@ -17,6 +17,6 @@ bool PanelLayer::init()
 
 	_goldCounter = GoldCounterLayer::create(0);
 	addChild(_goldCounter);
-	_goldCounter->setPosition(ccp(550,60));
+	_goldCounter->setPosition(ccp(500,60));
     return true;
 }

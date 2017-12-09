@@ -1,4 +1,4 @@
-#include "GoldCounterLayer.h"
+﻿#include "GoldCounterLayer.h"
 #include "Counter.h"
 #include "StaticData.h"
 #define NUM_COUNTER 7
@@ -26,7 +26,7 @@ bool GoldCounterLayer::init(int number)
 	{
 		return false;
 	}
-    CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage("ui_text_01-ipadhd.png");
+    CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage("ui_text_03-ipadhd.png");
 	CCSize textureSize = texture->getContentSize();
     
     for(int i = 0 ;i < NUM_COUNTER;i++){

@@ -1,7 +1,7 @@
 #include "FishLayer.h"
 #include <ctime>
 
-#define FISH_MAX_COUNT 5
+#define FISH_MAX_COUNT 50
 
 enum{
 	k_Direction_Left = 0,
