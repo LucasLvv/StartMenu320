@@ -18,7 +18,7 @@ bool FishNet::init()
 	//weapon_net_%02d.png
 	CCString *fileName=CCString::createWithFormat("weapon_net_%03d.png",1);
 	_fishNetSprite = CCSprite::createWithSpriteFrameName(fileName->getCString());
-	_fishNetSprite->setAnchorPoint(ccp(0.5, 1));
+	_fishNetSprite->setAnchorPoint(ccp(0.5, 0.5));
 	addChild(_fishNetSprite);
 	return true;
 }

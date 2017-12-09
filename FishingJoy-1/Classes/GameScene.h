@@ -7,7 +7,7 @@
 #include "TouchLayer.h"
 #include "Bullet.h"
 #include "Fish.h"
-
+#include "PanelLayer.h"
 USING_NS_CC;
 
 class GameScene :
@@ -18,7 +18,7 @@ public:
 	//static GameScene * create();
 	CREATE_FUNC(GameScene)
 	virtual bool init();
-	virtual ~GameScene();
+	virtual ~GameScene(void);
 
 	void cannonAimAt(CCPoint target);
 	void cannonShootTo(CCPoint target);
@@ -29,6 +29,7 @@ protected:
 	MenuLayer* _menuLayer;
 	CannonLayer* _cannonLayer;
 	TouchLayer* _touchLayer;
+	PanelLayer* _paneLayer;
 	void preloadResources(void);
 	virtual void update(float delta);
 	void fishWillBeCaught(Fish* fish);

@@ -41,9 +41,12 @@ public:
 	CC_SYNTHESIZE(FishType, _type, Type);
 	CCRect getCollisionArea();
 	void beCaught();
+	void moveTo(cocos2d::CCPoint destination);
+	CCSize getSize();
 protected:
 	CCSprite* _fishSprite;
 	//FishType _type;
-	void Fish::beCaught_CallFunc();
+	void moveEnd();
+	void beCaught_CallFunc();
 };
 

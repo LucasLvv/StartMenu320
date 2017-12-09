@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "Fish.h"
+#include "FishJoyData.h"
 
 GameScene::GameScene()
 {
@@ -9,25 +10,37 @@ bool GameScene::init()
 {
 	do
 	{
+		if(!CCScene::init())
+		{
+			break;
+		}
 		CC_BREAK_IF(!CCScene::init());
 		preloadResources();
-		//因为~GameScene()中需要CC_SAFE_RELEASE(_menuLayer)， 如果其它层创建失败，_menuLayer将不创建，
-		//所以_menuLayer要先于其他层创建， 否则将报 "reference count greater than 0" 错误
 		_menuLayer = MenuLayer::create(); 
 		CC_BREAK_IF(!_menuLayer);
 		CC_SAFE_RETAIN(_menuLayer); 
+
 		_backgroundLayer = BackgroundLayer::create();
 		CC_BREAK_IF(!_backgroundLayer);
-		this->addChild(_backgroundLayer);
+		addChild(_backgroundLayer);
+
+		_paneLayer = PanelLayer::create();
+		CC_BREAK_IF(!_paneLayer);
+		addChild(_paneLayer);
+		_paneLayer->getGoldCounter()->setNumber(FishJoyData::sharedFishJoyData()->getGold());
+
 		_fishLayer = FishLayer::create();
 		CC_BREAK_IF(!_fishLayer);
-		this->addChild(_fishLayer);
+		addChild(_fishLayer);
+
 		_cannonLayer = CannonLayer::create();
 		CC_BREAK_IF(!_cannonLayer);
-		this->addChild(_cannonLayer);
+		addChild(_cannonLayer);
+
 		_touchLayer = TouchLayer::create();
 		CC_BREAK_IF(!_touchLayer);
-		this->addChild(_touchLayer);
+		addChild(_touchLayer);
+
 		/*if(menuLayer)
 		{
 			menuLayer->retain();
