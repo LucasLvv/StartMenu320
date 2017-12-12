@@ -19,7 +19,7 @@ public:
 	CREATE_FUNC(GameScene)
 	virtual bool init();
 	virtual ~GameScene(void);
-
+	void alterGold(int golds);
 	void cannonAimAt(CCPoint target);
 	void cannonShootTo(CCPoint target);
 
@@ -33,6 +33,7 @@ protected:
 	void preloadResources(void);
 	virtual void update(float delta);
 	void fishWillBeCaught(Fish* fish);
+
 	//Åö×²¼ì²â
 	void checkOutCollision();
 	bool checkOutCollisionBetweenFishesAndBullet(Bullet *bullet);

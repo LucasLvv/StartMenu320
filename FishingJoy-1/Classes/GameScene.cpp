@@ -2,6 +2,7 @@
 #include "Fish.h"
 #include "FishJoyData.h"
 
+
 GameScene::GameScene()
 {
 }
@@ -104,6 +105,13 @@ void GameScene::cannonAimAt(CCPoint target)
 void GameScene::cannonShootTo(CCPoint target)
 {
 	_cannonLayer->shootTo(target);
+
+	int type = _cannonLayer->getWeapon()->getCannon()->getType();
+	int cost = (type+1) * 1;
+	if(FishJoyData::sharedFishJoyData()->getGold() >= cost){
+		_cannonLayer->shootTo(target);
+		alterGold(-cost);
+	}
 }
 
 bool GameScene::checkOutCollisionBetweenFishesAndBullet(Bullet *bullet)
@@ -157,7 +165,14 @@ void GameScene::fishWillBeCaught(Fish* fish)
 	/*if(CCRANDOM_0_1() <1.1)*/
 	{
 		fish->beCaught();
+
+		int cost = (fishType+1) * 5;
+		alterGold(cost);
+		
+
 	}
+
+	
 }
 
 void GameScene::checkOutCollisionBetweenFishesAndFishingNet(Bullet *bullet)
@@ -175,4 +190,11 @@ void GameScene::checkOutCollisionBetweenFishesAndFishingNet(Bullet *bullet)
 			fishWillBeCaught(fish);
 		}
 	}
+}
+
+
+void GameScene::alterGold(int golds)
+{
+	FishJoyData::sharedFishJoyData()->alterGold(golds);
+	_paneLayer->getGoldCounter()->setNumber(FishJoyData::sharedFishJoyData()->getGold());
 }
