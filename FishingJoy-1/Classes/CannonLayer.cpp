@@ -52,7 +52,7 @@ void CannonLayer::aimAt(CCPoint target)
 	_weapon->aimAt(target);
 }
 
-void CannonLayer::shootTo(CCPoint target)
+bool CannonLayer::shootTo(CCPoint target)
 {
-	_weapon->shootTo(target);
+	return _weapon->shootTo(target);
 }

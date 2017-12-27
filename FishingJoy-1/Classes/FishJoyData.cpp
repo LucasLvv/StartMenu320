@@ -55,7 +55,7 @@ bool FishJoyData::init()
 void FishJoyData::reset()
 {
     //int gold = STATIC_DATA_INT("default_gold");
-    this->setGold(700);
+    this->setGold(500);
     this->setIsBeginner(true);
     this->setisMusic(true);
     this->setisSound(true);
@@ -71,18 +71,11 @@ void FishJoyData::alterGold(int golds)
 }
 void FishJoyData::flush()
 {
-    //CCUserDefault::sharedUserDefault()->setBoolForKey(IS_BEGINER,getIsBeginner());
-    //CCUserDefault::sharedUserDefault()->setIntegerForKey(GOLD,getGold());
-    //CCUserDefault::sharedUserDefault()->setBoolForKey(MUSIC,getisMusic());
-    //CCUserDefault::sharedUserDefault()->setBoolForKey(SOUND,getisSound());
-    //CCUserDefault::sharedUserDefault()->flush();
-    //CCUserDefault::sharedUserDefault()->purgeSharedUserDefault();
-
 	//将数据成员的值保存到xml文件里面
 	CCUserDefault *userDefault = CCUserDefault::sharedUserDefault();
 	userDefault->setBoolForKey(IS_BEGINER,_isBeginner);
 	userDefault->setIntegerForKey(GOLD,_gold);
-	userDefault->setBoolForKey(MUSIC,_isMusic);
-	userDefault->setBoolForKey(SOUND,_isSound);
+	userDefault->getBoolForKey(MUSIC,_isMusic);
+	userDefault->getBoolForKey(SOUND,_isSound);
 	userDefault->flush();
 }

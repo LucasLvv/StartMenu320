@@ -1,6 +1,6 @@
 #include "GameMenuLayer.h"
 #include "GameScene.h"
-
+#include "LoadingLayer.h"
 GameMenuLayer::GameMenuLayer(void)
 {
 }
@@ -95,8 +95,8 @@ void GameMenuLayer::menuCallbackSelectScene(CCObject* sender)
 void GameMenuLayer::menuCallbackStartGame(CCObject* sender)
 {
 	//从开始游戏进入游戏层
-	GameScene *gameScene = GameScene::create();
-	CCDirector::sharedDirector()->replaceScene(gameScene);
+	CCScene* loadingLayer = LoadingLayer::scene();
+	CCDirector::sharedDirector()->replaceScene(loadingLayer);
 }
 
 GameMenuLayer::~GameMenuLayer()

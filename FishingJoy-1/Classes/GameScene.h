@@ -10,8 +10,12 @@
 #include "PanelLayer.h"
 USING_NS_CC;
 
-class GameScene :
-	public CCScene
+typedef enum{
+	k_Operate_Pause = 0,
+	k_Operate_Resume
+}OperateFlag;
+
+class GameScene : public CCScene
 {
 public:
 	GameScene(void);
@@ -23,14 +27,22 @@ public:
 	void cannonAimAt(CCPoint target);
 	void cannonShootTo(CCPoint target);
 
+	void pause();
+	void resume();
+	void sound();
+	void music();
+	void reset();
+	void transToMainMenu();
+	void scheduleTimeUp();
+
 protected:
 	BackgroundLayer* _backgroundLayer;
 	FishLayer* _fishLayer;
 	MenuLayer* _menuLayer;
 	CannonLayer* _cannonLayer;
 	TouchLayer* _touchLayer;
-	PanelLayer* _paneLayer;
-	void preloadResources(void);
+	PanelLayer* _panelLayer;
+
 	virtual void update(float delta);
 	void fishWillBeCaught(Fish* fish);
 
@@ -38,5 +50,9 @@ protected:
 	void checkOutCollision();
 	bool checkOutCollisionBetweenFishesAndBullet(Bullet *bullet);
 	void checkOutCollisionBetweenFishesAndFishingNet(Bullet *bulet);
+
+	//暂停或恢复场景内运行的所有节点
+	void operateAllSchedulerAndActions(CCNode* node, OperateFlag flag);
+	/*void onEnter();*/
 };
 
