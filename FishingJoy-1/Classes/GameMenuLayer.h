@@ -13,6 +13,7 @@ public:
 	void menuCallbackStartGame(CCObject* sender);
 	virtual bool init();
 	virtual ~GameMenuLayer(void);
+
 protected:
 	void createMenu(void);
 };

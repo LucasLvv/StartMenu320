@@ -3,6 +3,7 @@
 #include "PersonalAudioEngine.h"
 #include "FishJoyData.h"
 
+
 CCScene* LoadingLayer::scene()
 {
     CCScene* scene = CCScene::create();
@@ -27,32 +28,18 @@ bool LoadingLayer::init()
 
 void LoadingLayer::cacheInit(float delta)
 {
-	int progressStart = 1;
-	float ratio = 3.3f;
-    CCSpriteFrameCache* spriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-    
-	char fishPlists[][50] = { "FishActor-Large-ipadhd.plist", "FishActor-Marlin-ipadhd.plist", 
-		"FishActor-Shark-ipadhd.plist", "FishActor-Small-ipadhd.plist", "FishActor-Mid-ipadhd.plist", 
-		"cannon-ipadhd.plist", "Item-chaojiwuqi-ipadhd.plist"};
+	CCSpriteFrameCache* spriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+	spriteFrameCache->addSpriteFramesWithFile("FishActor-Large-ipadhd.plist");
+	spriteFrameCache->addSpriteFramesWithFile("FishActor-Marlin-ipadhd.plist");
+	spriteFrameCache->addSpriteFramesWithFile("FishActor-Shark-ipadhd.plist");
+	spriteFrameCache->addSpriteFramesWithFile("FishActor-Small-ipadhd.plist");
+	spriteFrameCache->addSpriteFramesWithFile("FishActor-Mid-ipadhd.plist");
+	spriteFrameCache->addSpriteFramesWithFile("cannon-ipadhd.plist");
+	spriteFrameCache->addSpriteFramesWithFile("Item-chaojiwuqi-ipadhd.plist");
 
-	for (int i = 0; i < 7; i++)
-	{
-		spriteFrameCache->addSpriteFramesWithFile(fishPlists[i]);
-		_progressBar->progressTo(ratio*(progressStart++));
-	}
-
-	CCTextureCache* textureCache = CCTextureCache::sharedTextureCache();
-
-	char buttonTextures[][50] = { "ui_button_63-ipadhd.png", "ui_button_65-ipadhd.png",
-		"ui_button_music_1-ipadhd.png", "ui_button_music_2-ipadhd.png", "button_other_001-ipadhd.png",
-		"button_other_002-ipadhd.png", "button_other_003-ipadhd.png", "button_other_004-ipadhd.png"
-	};
-
-	for (int i = 0; i < 8; i++)
-	{
-		textureCache->addImage(buttonTextures[i]);
-		_progressBar->progressTo(ratio*(progressStart++));
-	}
+	CCTextureCache *textureCache = CCTextureCache::sharedTextureCache();
+	textureCache->addImage("ui_button_63-ipadhd.png");
+	textureCache->addImage("ui_button_65-ipadhd.png");
 
 	char str[][50] = { "SmallFish", "Croaker", "AngelFish", "Amphiprion", "PufferS", 
 		"Bream", "Porgy", "Chelonian", "Lantern", "Ray", "Shark", "GoldenTrout", "GShark", 
@@ -74,13 +61,12 @@ void LoadingLayer::cacheInit(float delta)
 		CCAnimation* animation = CCAnimation::createWithSpriteFrames(array, 0.15f);
 		CCString* animationName = CCString::createWithFormat("fish_animation_%02d", i + 1);
 		CCAnimationCache::sharedAnimationCache()->addAnimation(animation, animationName->getCString());
-		_progressBar->progressTo(ratio*(progressStart++));
 	}
 
 	PersonalAudioEngine::sharedEngine();
-	FishJoyData::sharedFishJoyData();
+	FishJoyData::sharedFishJoyData()->setisMusic(true);
 
-	_progressBar->progressTo(100.0f);
+	_progressBar->progressTo();
 }
 
 void LoadingLayer::loadingFinished()
@@ -98,7 +84,7 @@ void LoadingLayer::progressPercentageSetter(float percentage)
 LoadingLayer::LoadingLayer()
 {
 	_loadedSp = 0;
-	_numSp = 3;
+/*	_numSp = 3;*/
 	_progressBar = NULL;
 	_progressFg = NULL;
 }
@@ -108,13 +94,13 @@ void LoadingLayer::initProgressBar()
 	CCSprite* progressBg = CCSprite::create("loading_4-ipadhd.png");
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-	_progressFg = CCLabelTTF::create("0/100", "Thonburi", 60);
-	_progressFg->setColor(ccc3(197, 118, 20));
+	_progressFg = CCLabelTTF::create("0/100", "Thonburi", 45);
+	_progressFg->setColor(ccc3(255, 255, 255));
 
 	_progressBar = ProgressBar::create(this, CCSprite::create("loading_5-ipadhd.png"));
 	_progressBar->setBackground(progressBg);
 	_progressBar->setForeground(_progressFg);
-	_progressBar->setPosition(CCPointMake(winSize.width*0.5, winSize.height*0.25));
+	_progressBar->setPosition(CCPointMake(winSize.width*0.5, winSize.height*0.28));
 	_progressBar->setSpeed(20.0f);
 
 	addChild(_progressBar);

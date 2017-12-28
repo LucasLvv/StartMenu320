@@ -14,7 +14,7 @@ bool CannonLayer::init()
 	{
 		return false;
 	}
-	_weapon = Weapon::create((CannonType)0);
+	_weapon = Weapon::create((CannonType)8);
 	addChild(_weapon,1);
 	CCSize winSize=CCDirector::sharedDirector()->getWinSize();
 	_weapon->setPosition(ccp(winSize.width/2 - 18, 0));

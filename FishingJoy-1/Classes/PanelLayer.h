@@ -16,14 +16,12 @@ public:
     CREATE_FUNC(PanelLayer)
     CC_SYNTHESIZE_READONLY(GoldCounterLayer *, _goldCounter, GoldCounter)
 
-	//虚函数实现
 	void scheduleTimeUp();
 	void setScheduleNumber(int number);
 
 protected:
-	void pause(CCObject *sender);
+	/*void pause(CCObject *sender);*/
 
-	//CCLabelTTF用来显示当前的倒计时时间
 	CCLabelTTF* _scheduleLabel;
 };
 

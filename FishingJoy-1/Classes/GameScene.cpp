@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "FishJoyData.h"
 #include "PersonalAudioEngine.h"
+#include "GameMenuLayer.h"
 
 GameScene::GameScene()
 {
@@ -41,41 +42,65 @@ bool GameScene::init()
 		_panelLayer->getGoldCounter()->setNumber(gold);
 
 		this->scheduleUpdate();
+		CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+
+		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI_GameMenuLayer-ipadhd.plist");
+		_pauseSprite = CCSprite::createWithSpriteFrameName("ui_button_02.png");
+
+		CCMenuItemSprite* pause = CCMenuItemSprite::create(_pauseSprite, 
+		_pauseSprite, this, menu_selector(GameScene::pause));
+
+		_menu = CCMenu::create(pause, NULL);
+		addChild(_menu);
+
+		CCSize pauseSize = pause->getContentSize();
+		_menu->setPosition(ccp(300,1460));
 		PersonalAudioEngine::sharedEngine()->playBackgroundMusic(1);
 		return true;
 	} while (0);
 	return false;
 }
 
-void GameScene::pause()
+void GameScene::pause(CCObject *sender)
 {
 	this->operateAllSchedulerAndActions(this, k_Operate_Pause);
 	_touchLayer->setTouchEnabled(false);
-	this->addChild(_menuLayer);
+	_menu->setTouchEnabled(false);
+	addChild(_menuLayer);
+	PersonalAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	PersonalAudioEngine::sharedEngine()->playEffect(kEffectSwichCannon);
 }
 
 void GameScene::resume()
 {
 	this->operateAllSchedulerAndActions(this, k_Operate_Resume);
+	FishJoyData::sharedFishJoyData()->getisMusic() ? PersonalAudioEngine::sharedEngine()->resumeBackgroundMusic() : PersonalAudioEngine::sharedEngine()->pauseBackgroundMusic();
 	this->removeChild(_menuLayer, false);
 	_touchLayer->setTouchEnabled(true);
+	_menu->setTouchEnabled(true);
 }
 
-void GameScene::sound()
-{
-// 	bool flag = FishJoyData::sharedFishJoyData()->getSoundVolume()>0;
+// void GameScene::sound()
+// {
+// 	bool flag = FishJoyData::sharedFishJoyData()->getisSound()>0;
 // 	PersonalAudioEngine::sharedEngine()->setEffectsVolume(!flag);
-}
+// }
 void GameScene::music()
 {
-// 	bool flag = FishJoyData::sharedFishJoyData()->getMusicVolume()>0;
-// 	PersonalAudioEngine::sharedEngine()->setBackgroundMusicVolume(!flag);
+	bool flag = FishJoyData::sharedFishJoyData()->getisMusic();
+	PersonalAudioEngine::sharedEngine()->setBackgroundMusicVolume(flag);
 }
 void GameScene::reset()
 {
+	FishJoyData::sharedFishJoyData()->reset();
+	_panelLayer->getGoldCounter()->setNumber(FishJoyData::sharedFishJoyData()->getGold());
+	this->_cannonLayer->getWeapon()->getCannon()->setType(k_Cannon_Type_1);
+	resume();
 }
-void GameScene::transToMainMenu()
+void GameScene::mainMenu()
 {
+	PersonalAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	CCDirector::sharedDirector()->replaceScene(GameMenuLayer::scene());
 }
 
 void GameScene::operateAllSchedulerAndActions(CCNode* node, OperateFlag flag)
@@ -152,7 +177,7 @@ void GameScene::checkOutCollision()
 		{
 			if(checkOutCollisionBetweenFishesAndBullet(bullet))
 			{
-				checkOutCollisionBetweenFishesAndFishingNet(bullet);
+				checkOutCollisionBetweenFishesAndFishNet(bullet);
 			}
 		}
 	}	
@@ -177,14 +202,10 @@ void GameScene::fishWillBeCaught(Fish* fish)
 		PersonalAudioEngine::sharedEngine()->playEffect(kEffectFishNet);
 		int reward = (fishType+1) * 5;
 		alterGold(reward);
-		
-
 	}
-
-	
 }
 
-void GameScene::checkOutCollisionBetweenFishesAndFishingNet(Bullet *bullet)
+void GameScene::checkOutCollisionBetweenFishesAndFishNet(Bullet *bullet)
 {
 	Weapon *weapon = _cannonLayer->getWeapon();
 	CCRect rect = weapon->getCollisionArea(bullet);

@@ -58,7 +58,7 @@ void GameMenuLayer::createMenu(void)
 	startSelectedTextSprite->setPosition(ccp(startNormalBgSize.width / 2, startNormalBgSize.height / 2 + 20));
 
 	CCMenuItemSprite* startMenuItem = CCMenuItemSprite::create(startNormalBgSprite, 
-		startSelectedBgSprite, this, menu_selector(GameMenuLayer::menuCallbackStartGame));
+	startSelectedBgSprite, this, menu_selector(GameMenuLayer::menuCallbackStartGame));
 
 	//"选择场景"按钮正常
 	CCSprite* sceneNormalBgSprite = CCSprite::createWithSpriteFrameName("ui_button_box01_02.png");
@@ -77,7 +77,7 @@ void GameMenuLayer::createMenu(void)
 	sceneSelectedTextSprite->setPosition(ccp(sceneNormalBgSize.width / 2, sceneNormalBgSize.height / 2 + 3));
 
 	CCMenuItemSprite* sceneMenuItem = CCMenuItemSprite::create(sceneNormalBgSprite, 
-		sceneSelectedBgSprite, this, menu_selector(GameMenuLayer::menuCallbackStartGame));
+	sceneSelectedBgSprite, this, menu_selector(GameMenuLayer::menuCallbackStartGame));
 
 	CCMenu* menu = CCMenu::create(startMenuItem, sceneMenuItem, NULL);
 	this->addChild(menu);

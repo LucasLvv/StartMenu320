@@ -20,7 +20,7 @@ public:
     void playBackgroundMusic(int type);
     void playEffect(EffectType type);
 	void setEffectsVolume(float volume);
-	void setBackgroundMusicVolume(float volume);
+	void setBackgroundMusicVolume(bool flag);
 	bool init();
 	PersonalAudioEngine(void);
 	~PersonalAudioEngine(void);

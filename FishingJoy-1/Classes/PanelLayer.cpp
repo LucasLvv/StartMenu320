@@ -17,38 +17,28 @@ bool PanelLayer::init()
 	{
 		return false;
 	}
-
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
 	_goldCounter = GoldCounterLayer::create(0);
 	this->addChild(_goldCounter);
-	_goldCounter->setPosition(ccp(600, 20));
+	_goldCounter->setPosition(ccp(500, 40));
 
 	ScheduleCountDown* countDown = ScheduleCountDown::create(this);
 
-	_scheduleLabel = CCLabelTTF::create("60", "Thonburi", 55);
+	_scheduleLabel = CCLabelTTF::create("30", "Thonburi", 70);
 	_scheduleLabel->addChild(countDown);
+	_scheduleLabel->setColor(ccc3(102, 255, 255));
 	this->addChild(_scheduleLabel);
-	_scheduleLabel->setPosition(ccp(500, 20));
-
-	CCMenuItemSprite* pause = CCMenuItemSprite::create(CCSprite::create("button_other_003-ipadhd.png"), 
-	CCSprite::create("button_other_004-ipadhd.png"),
-	this, menu_selector(PanelLayer::pause));
-
-	CCMenu* menu = CCMenu::create(pause, NULL);
-	this->addChild(menu);
-
-	CCSize pauseSize = pause->getContentSize();
-	menu->setPosition(CCPointMake(winSize.width-pauseSize.width*0.5, pauseSize.height*0.5));
+	_scheduleLabel->setPosition(ccp(70, 300));
 
     return true;
 }
 
-void PanelLayer::pause(CCObject *sender)
-{
-	GameScene* gameScene = (GameScene*)this->getParent();
-	gameScene->pause();
-}
+// void PanelLayer::pause(CCObject *sender)
+// {
+// 	GameScene* gameScene = (GameScene*)this->getParent();
+// 	gameScene->pause();
+// }
 
 void PanelLayer::setScheduleNumber(int number)
 {

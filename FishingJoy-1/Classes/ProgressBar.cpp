@@ -49,10 +49,10 @@ void ProgressBar::progressBy(float delta)
     
     runAction(spawn);
 }
-void ProgressBar::progressTo(float destination)
+void ProgressBar::progressTo(/*float destination*/)
 {
-    float delta = destination-this->getPercentage();
-    this->progressBy(delta);
+/*    float delta = destination-this->getPercentage();*/
+    this->progressBy(100.0f);
 }
 void ProgressBar::updatePercentage()
 {

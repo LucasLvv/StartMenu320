@@ -27,13 +27,14 @@ public:
 	void cannonAimAt(CCPoint target);
 	void cannonShootTo(CCPoint target);
 
-	void pause();
+	void pause(CCObject *sender);
 	void resume();
-	void sound();
+/*	void sound();*/
 	void music();
 	void reset();
-	void transToMainMenu();
+	void mainMenu();
 	void scheduleTimeUp();
+	CC_SYNTHESIZE_READONLY(CCMenu*, _menu, Menu);
 
 protected:
 	BackgroundLayer* _backgroundLayer;
@@ -42,6 +43,7 @@ protected:
 	CannonLayer* _cannonLayer;
 	TouchLayer* _touchLayer;
 	PanelLayer* _panelLayer;
+	CCSprite* _pauseSprite;
 
 	virtual void update(float delta);
 	void fishWillBeCaught(Fish* fish);
@@ -49,7 +51,7 @@ protected:
 	//碰撞检测
 	void checkOutCollision();
 	bool checkOutCollisionBetweenFishesAndBullet(Bullet *bullet);
-	void checkOutCollisionBetweenFishesAndFishingNet(Bullet *bulet);
+	void checkOutCollisionBetweenFishesAndFishNet(Bullet *bulet);
 
 	//暂停或恢复场景内运行的所有节点
 	void operateAllSchedulerAndActions(CCNode* node, OperateFlag flag);

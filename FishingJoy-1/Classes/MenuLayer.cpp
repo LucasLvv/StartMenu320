@@ -19,16 +19,16 @@ void MenuLayer::createBackground()
 }
 void MenuLayer::createMenu()
 {
-	int fontSize = 32;
+	int fontSize = 47;
 	CCString* fontName = CCString::create("Thonburi");
 
 	CCMenuItemLabel* resume = CCMenuItemLabel::create(CCLabelTTF::create("Resume", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::resume));
 
 	CCMenuItemLabel* mainMenu = CCMenuItemLabel::create(CCLabelTTF::create("Main Menu", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::mainMenu));
 
-	CCMenuItemLabel* soundOn = CCMenuItemLabel::create(CCLabelTTF::create("Sound On", fontName->getCString(), fontSize));
-	CCMenuItemLabel* soundOff = CCMenuItemLabel::create(CCLabelTTF::create("Sound Off", fontName->getCString(), fontSize));
-	_sound = CCMenuItemToggle::createWithTarget(this, menu_selector(MenuLayer::sound), soundOff, soundOn, NULL);
+// 	CCMenuItemLabel* soundOn = CCMenuItemLabel::create(CCLabelTTF::create("Sound On", fontName->getCString(), fontSize));
+// 	CCMenuItemLabel* soundOff = CCMenuItemLabel::create(CCLabelTTF::create("Sound Off", fontName->getCString(), fontSize));
+// 	_sound = CCMenuItemToggle::createWithTarget(this, menu_selector(MenuLayer::sound), soundOff, soundOn, NULL);
 
 	CCMenuItemLabel* musicOn = CCMenuItemLabel::create(CCLabelTTF::create("Music On", fontName->getCString(), fontSize));
 	CCMenuItemLabel* musicOff = CCMenuItemLabel::create(CCLabelTTF::create("Music Off", fontName->getCString(), fontSize));
@@ -36,9 +36,9 @@ void MenuLayer::createMenu()
 
 	CCMenuItemLabel* reset = CCMenuItemLabel::create(CCLabelTTF::create("Reset", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::reset));
 
-	CCMenu* menu = CCMenu::create(resume, mainMenu, _sound, _music, reset, NULL);
+	CCMenu* menu = CCMenu::create(resume, mainMenu, _music, reset, NULL);
 	menu->alignItemsVerticallyWithPadding(10);
-	this->addChild(menu);
+	addChild(menu);
 }
 void MenuLayer::resume(cocos2d::CCObject* pSender)
 {
@@ -48,13 +48,14 @@ void MenuLayer::resume(cocos2d::CCObject* pSender)
 void MenuLayer::mainMenu(cocos2d::CCObject* pSender)
 {
 	GameScene* gameScene = (GameScene*)this->getParent();
-	gameScene->transToMainMenu();
+	gameScene->mainMenu();
 }
-void MenuLayer::sound(cocos2d::CCObject* pSender)
-{
-	GameScene* gameScene = (GameScene*)this->getParent();
-	gameScene->sound();
-}
+//无法实现。。。
+// void MenuLayer::sound(cocos2d::CCObject* pSender)
+// {
+// 	GameScene* gameScene = (GameScene*)this->getParent();
+// 	gameScene->sound();
+// }
 void MenuLayer::music(cocos2d::CCObject* pSender)
 {
 	GameScene* gameScene = (GameScene*)this->getParent();
@@ -65,10 +66,10 @@ void MenuLayer::reset(cocos2d::CCObject* pSender)
 	GameScene* gameScene = (GameScene*)this->getParent();
 	gameScene->reset();
 }
-void MenuLayer::setSoundAndMusicVolume(float soundVolume, float musicVolume)
-{
-	bool soundFlag = soundVolume>0;
-	bool musicFlag = musicVolume>0;
-	_sound->setSelectedIndex(soundFlag);
-	_music->setSelectedIndex(musicFlag);
-}
+// void MenuLayer::setSoundAndMusicVolume(float soundVolume, float musicVolume)
+// {
+// 	bool soundFlag = soundVolume>0;
+// 	bool musicFlag = musicVolume>0;
+// 	_sound->setSelectedIndex(soundFlag);
+// 	_music->setSelectedIndex(musicFlag);
+// }

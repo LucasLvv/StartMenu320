@@ -75,10 +75,10 @@ void PersonalAudioEngine::playEffect(EffectType type){
 	}
 }
 
-void PersonalAudioEngine::setBackgroundMusicVolume(float volume)
+void PersonalAudioEngine::setBackgroundMusicVolume(bool flag)
 {
-	SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(volume);
-	FishJoyData::sharedFishJoyData()->setisMusic(volume);
+	flag ? this->pauseBackgroundMusic() : this->resumeBackgroundMusic();
+	FishJoyData::sharedFishJoyData()->setisMusic(flag);
 }
 void PersonalAudioEngine::setEffectsVolume(float volume)
 {

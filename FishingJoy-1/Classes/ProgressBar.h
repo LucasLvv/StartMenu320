@@ -11,7 +11,7 @@ public:
 	CC_SYNTHESIZE(float, _speed, Speed);
     CC_SYNTHESIZE(ProgressDelegate*, _target, Target);
 	void progressBy(float delta);
-	void progressTo(float destination);
+	void progressTo(/*float destination*/);
 	void setBackground(CCNode* bg);
 	void setForeground (CCNode* fg);
 protected:
