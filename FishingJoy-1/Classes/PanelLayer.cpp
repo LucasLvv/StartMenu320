@@ -47,7 +47,7 @@ void PanelLayer::setScheduleNumber(int number)
 
 void PanelLayer::scheduleTimeUp()
 {
-	_scheduleLabel->setVisible(false);
+	/*_scheduleLabel->setVisible(false);*/
 
 	GameScene* gameScene = (GameScene*)this->getParent();
 	gameScene->scheduleTimeUp();

@@ -50,6 +50,10 @@ bool GameScene::init()
 		CCMenuItemSprite* pause = CCMenuItemSprite::create(_pauseSprite, 
 		_pauseSprite, this, menu_selector(GameScene::pause));
 
+		CCSprite* _rubber = CCSprite::createWithSpriteFrameName("ui_box_01.png");
+		addChild(_rubber);
+		_rubber->setPosition(ccp(1000,1460));
+
 		_menu = CCMenu::create(pause, NULL);
 		addChild(_menu);
 
